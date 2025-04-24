@@ -1,0 +1,19 @@
+services:
+  ollama:
+    image: ollama/ollama
+    container_name: ollama
+    ports:
+      - 11434:11434  # Host ↔ Container port mapping
+    networks:
+      - ragflow
+    volumes:
+      - ollama_data:/root/.ollama  # Persistent model cache
+    restart: unless-stopped
+
+networks:
+  ragflow:
+    external: true  # Uses your existing podman network
+
+volumes:
+  ollama_data:
+    driver: local

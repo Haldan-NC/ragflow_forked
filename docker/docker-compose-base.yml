@@ -120,6 +120,17 @@ services:
           - redis
     restart: on-failure
 
+  ollama:
+    image: ollama/ollama
+    container_name: ragflow-ollama
+    ports:
+      - 11434:11434  # Host ↔ Container port mapping
+    networks:
+      - ragflow
+    volumes:
+      - ollama_data:/root/.ollama  # Persistent model cache
+    restart: on-failure
+
 volumes:
   esdata01:
     driver: local
@@ -130,6 +141,8 @@ volumes:
   minio_data:
     driver: local
   redis_data:
+    driver: local
+  ollama_data:
     driver: local
 
 networks:

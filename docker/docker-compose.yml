@@ -13,6 +13,8 @@ services:
         condition: service_healthy
       ragflow-es-01:
         condition: service_healthy
+      ragflow-ollama:
+        condition: service_healthy
     image: ${RAGFLOW_IMAGE}
     # example to setup MCP server
     # command:

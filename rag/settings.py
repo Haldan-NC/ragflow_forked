@@ -65,7 +65,9 @@ try:
     PARALLEL_DEVICES = torch.cuda.device_count()
     logging.info(f"found {PARALLEL_DEVICES} gpus")
 except Exception:
-    logging.info("can't import package 'torch'")
+    import torch
+    logging.info("can't import package 'torch.cuda', use cpu instead")
+    PARALLEL_DEVICES = 0
 
 def print_rag_settings():
     logging.info(f"MAX_CONTENT_LENGTH: {DOC_MAXIMUM_SIZE}")
